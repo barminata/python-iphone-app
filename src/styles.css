@@ -26,6 +26,10 @@ textarea {
   resize: none;
 }
 
+pre {
+  margin: 0;
+}
+
 .safe-pb {
   padding-bottom: calc(1rem + env(safe-area-inset-bottom));
 }
