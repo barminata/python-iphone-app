@@ -10,6 +10,7 @@ const CORE_ASSETS = [
   "./src/components/assignment-card.tsx",
   "./src/main.tsx",
   "./src/styles.css",
+  "./files/lesson-1.pdf",
   "./icons/icon.svg",
   "./icons/apple-touch-icon.svg",
   "https://cdn.tailwindcss.com?plugins=typography",

@@ -460,10 +460,10 @@ const App = () => {
   const nextLesson = lessons.find((lesson: Lesson) => lesson.id === currentLesson.id + 1);
 
   return (
-    <div className="safe-pb min-h-screen bg-transparent text-slate-900">
+    <div className="app-shell safe-pb min-h-screen bg-transparent text-slate-900">
       <div className="mx-auto flex min-h-screen w-full max-w-md flex-col px-4 pb-28 pt-4">
-        <header className="glass-card hero-grid overflow-hidden rounded-[28px] border border-white/70 px-5 py-5 shadow-soft">
-          <div className="mb-3 inline-flex rounded-full bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-brand-600">
+        <header className="glass-card candy-card hero-grid overflow-hidden rounded-[32px] border border-white/80 px-5 py-5 shadow-soft">
+          <div className="mb-3 inline-flex rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-brand-600 shadow-sm">
             mobile-first python
           </div>
           <h1 className="max-w-xs text-3xl font-extrabold leading-tight text-slate-900">
@@ -616,7 +616,7 @@ const HomeScreen = ({
   onOpenWorks: () => void;
 }) => (
   <main className="mt-4 flex flex-1 flex-col gap-4">
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
       <div className="rounded-3xl bg-gradient-to-br from-brand-500 to-sky-500 px-5 py-5 text-white">
         <p className="text-sm font-semibold text-white/80">Старт за 5 минут</p>
         <h2 className="mt-2 text-2xl font-extrabold leading-tight">
@@ -631,8 +631,8 @@ const HomeScreen = ({
       </div>
     </section>
 
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
-      <div className="flex items-center justify-between gap-3 rounded-[24px] bg-slate-900 px-4 py-4 text-white">
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+      <div className="flex items-center justify-between gap-3 rounded-[24px] bg-gradient-to-r from-slate-900 to-brand-700 px-4 py-4 text-white">
         <div>
           <div className="text-sm text-white/70">Мои работы</div>
           <div className="text-lg font-extrabold">{savedWorksCount}</div>
@@ -646,7 +646,7 @@ const HomeScreen = ({
       </div>
     </section>
 
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-extrabold text-slate-900">Уроки</h2>
         <span className="text-sm font-medium text-slate-500">
@@ -662,7 +662,7 @@ const HomeScreen = ({
             <button
               key={lesson.id}
               onClick={() => onOpenLesson(lesson.id)}
-              className="w-full rounded-[24px] border border-slate-200 bg-white p-4 text-left shadow-sm transition active:scale-[0.99]"
+              className="w-full rounded-[24px] border border-slate-200 bg-gradient-to-r from-white to-sky-50/80 p-4 text-left shadow-sm transition active:scale-[0.99]"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -685,7 +685,7 @@ const HomeScreen = ({
       </div>
     </section>
 
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
       <h2 className="text-lg font-extrabold text-slate-900">Достижения</h2>
       <div className="mt-4 space-y-3">
         {Object.entries(achievementMeta).map(([id, meta]) => {
@@ -761,7 +761,7 @@ const LessonScreen = ({
   onNextLesson: () => void;
 }) => (
   <main className="mt-4 flex flex-1 flex-col gap-4">
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="text-sm font-bold text-brand-600">{lesson.topic}</div>
@@ -778,9 +778,26 @@ const LessonScreen = ({
         </span>
       </div>
       <p className="mt-4 text-sm leading-6 text-slate-600">{lesson.theory}</p>
+      {lesson.pdf ? (
+        <div className="mt-4 rounded-[24px] bg-gradient-to-r from-brand-50 to-sky-50 p-4">
+          <div className="text-sm font-bold text-brand-700">Материал к уроку</div>
+          <p className="mt-2 text-sm leading-6 text-brand-900">
+            Можно открыть PDF и сохранить его к себе на телефон.
+          </p>
+          <a
+            href={lesson.pdf.file}
+            download
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 inline-flex w-full items-center justify-center rounded-2xl bg-brand-600 px-5 py-4 text-base font-extrabold text-white shadow-lg shadow-brand-200 transition active:scale-[0.99]"
+          >
+            {lesson.pdf.title}
+          </a>
+        </div>
+      ) : null}
     </section>
 
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
       <div className="text-sm font-bold text-slate-500">Пример кода</div>
       <pre className="mt-3 overflow-x-auto rounded-[22px] bg-slate-950 p-4 font-mono text-sm leading-6 text-sky-100">
         <code>{lesson.example}</code>
@@ -802,36 +819,35 @@ const LessonScreen = ({
       onReset={onReset}
     />
 
-    <section className="rounded-[28px] border border-brand-200 bg-brand-50 p-5 shadow-sm">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <div className="text-sm font-bold text-brand-700">Подсказка</div>
-          {showHint ? (
-            <p className="mt-2 text-sm leading-6 text-brand-900">{lesson.hint}</p>
-          ) : (
-            <p className="mt-2 text-sm leading-6 text-brand-900">
-              Нажми кнопку ниже, если нужен маленький намёк.
-            </p>
-          )}
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+      <div className="text-sm font-bold text-slate-500">Практика</div>
+      <p className="mt-2 text-sm leading-6 text-slate-700">{lesson.practice}</p>
+      <div className="section-banner soft-dots mt-4 rounded-[24px] border border-brand-100 p-4 shadow-sm">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <div className="text-sm font-bold text-brand-700">Подсказка</div>
+            {showHint ? (
+              <p className="mt-2 text-sm leading-6 text-brand-900">{lesson.hint}</p>
+            ) : (
+              <p className="mt-2 text-sm leading-6 text-brand-900">
+                Нажми кнопку ниже, если нужен маленький намёк.
+              </p>
+            )}
+          </div>
+          <button
+            onClick={onToggleHint}
+            className="rounded-2xl border border-brand-200 bg-white px-4 py-3 text-sm font-bold text-brand-700"
+          >
+            {showHint ? "Скрыть" : "Показать"}
+          </button>
         </div>
-        <button
-          onClick={onToggleHint}
-          className="rounded-2xl border border-brand-200 bg-white px-4 py-3 text-sm font-bold text-brand-700"
-        >
-          {showHint ? "Скрыть" : "Показать"}
-        </button>
       </div>
     </section>
 
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
-      <div className="text-sm font-bold text-slate-500">Практика</div>
-      <p className="mt-2 text-sm leading-6 text-slate-700">{lesson.practice}</p>
-    </section>
-
-    <section className="flex flex-col gap-4">
-      <div className="px-1">
+    <section className="glass-card candy-card flex flex-col gap-4 rounded-[28px] border border-white/70 p-5 shadow-soft">
+      <div className="section-banner soft-dots rounded-[24px] border border-brand-100 px-4 py-4 shadow-sm">
         <h3 className="text-xl font-extrabold text-slate-900">Домашнее задание</h3>
-        <p className="mt-1 text-sm leading-6 text-slate-600">
+        <p className="mt-1 text-sm leading-6 text-slate-700">
           Выбери задание, напиши свой код и сохрани ответ.
         </p>
       </div>
@@ -856,10 +872,10 @@ const LessonScreen = ({
       })}
     </section>
 
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
       <button
         onClick={onNextLesson}
-        className="w-full rounded-2xl bg-slate-900 px-5 py-4 text-base font-extrabold text-white transition active:scale-[0.99]"
+        className="w-full rounded-2xl bg-gradient-to-r from-slate-900 to-brand-700 px-5 py-4 text-base font-extrabold text-white transition active:scale-[0.99]"
       >
         {nextLessonId ? "Следующий урок" : "Перейти к моим работам"}
       </button>
@@ -880,7 +896,7 @@ const ProgressScreen = ({
 
   return (
     <main className="mt-4 flex flex-1 flex-col gap-4">
-      <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+      <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-extrabold text-slate-900">Твой прогресс</h2>
@@ -901,7 +917,7 @@ const ProgressScreen = ({
         </div>
       </section>
 
-      <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+      <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
         <h2 className="text-lg font-extrabold text-slate-900">Пройденные уроки</h2>
         <div className="mt-4 space-y-3">
           {lessons.map((lesson: Lesson) => {
@@ -932,7 +948,7 @@ const ProgressScreen = ({
         </div>
       </section>
 
-      <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+      <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
         <h2 className="text-lg font-extrabold text-slate-900">Достижения</h2>
         <div className="mt-4 grid gap-3">
           {Object.entries(achievementMeta).map(([id, meta]) => {
@@ -979,7 +995,7 @@ const WorksScreen = ({
   onDelete: (workId: string) => void;
 }) => (
   <main className="mt-4 flex flex-1 flex-col gap-4">
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
       <h2 className="text-2xl font-extrabold text-slate-900">Мои работы</h2>
       <p className="mt-2 text-sm leading-6 text-slate-600">
         Здесь хранятся все сохранённые домашние задания.
@@ -989,7 +1005,7 @@ const WorksScreen = ({
     {groupedWorks.map(({ lesson, works }) => (
       <section
         key={lesson.id}
-        className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft"
+        className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft"
       >
         <div className="mb-4 flex items-center justify-between gap-3">
           <div>
@@ -1011,7 +1027,7 @@ const WorksScreen = ({
         ) : (
           <div className="space-y-4">
             {works.map((work) => (
-              <div key={work.id} className="rounded-[24px] border border-slate-200 bg-white p-4">
+              <div key={work.id} className="rounded-[24px] border border-slate-200 bg-gradient-to-r from-white to-sky-50/80 p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <div className="text-base font-extrabold text-slate-900">
@@ -1078,7 +1094,9 @@ const NavButton = ({
   <button
     onClick={onClick}
     className={`flex-1 rounded-2xl px-3 py-3 text-xs font-extrabold transition active:scale-[0.99] ${
-      active ? "bg-slate-900 text-white" : "bg-white/80 text-slate-600"
+      active
+        ? "bg-gradient-to-r from-slate-900 to-brand-700 text-white shadow-md"
+        : "bg-white/85 text-slate-600"
     }`}
   >
     {label}

@@ -15,6 +15,10 @@ type Lesson = {
   starterCode: string;
   practice: string;
   hint: string;
+  pdf?: {
+    title: string;
+    file: string;
+  };
   assignments: Assignment[];
 };
 
@@ -34,6 +38,10 @@ type AchievementId = "first-run" | "first-lesson" | "all-lessons";
         'Напиши свою фразу с помощью print(). Например: print("Я учу Python!")',
       hint:
         'Внутри скобок и кавычек нужно написать текст, который ты хочешь увидеть на экране.',
+      pdf: {
+        title: "Скачать PDF к уроку 1",
+        file: "./files/lesson-1.pdf",
+      },
       assignments: [
         {
           id: "about-me",

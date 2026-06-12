@@ -36,9 +36,12 @@ declare const React: typeof import("react");
         : "bg-brand-600 text-white shadow-lg shadow-brand-200";
 
     return (
-      <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+      <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
         <div className="mb-3">
-          <div className="text-lg font-extrabold text-slate-900">{title}</div>
+          <div className="inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-700">
+            код
+          </div>
+          <div className="mt-2 text-lg font-extrabold text-slate-900">{title}</div>
           {subtitle ? <div className="text-sm text-slate-500">{subtitle}</div> : null}
         </div>
 
@@ -46,7 +49,7 @@ declare const React: typeof import("react");
           value={code}
           onChange={(event) => onCodeChange(event.target.value)}
           spellCheck={false}
-          className="min-h-[220px] w-full rounded-[24px] border border-slate-200 bg-slate-950 p-4 font-mono text-sm leading-6 text-sky-100 outline-none ring-0"
+          className="min-h-[220px] w-full rounded-[24px] border border-slate-200 bg-slate-950 p-4 font-mono text-sm leading-6 text-sky-100 outline-none ring-0 shadow-inner"
         />
 
         <div className="mt-4 grid grid-cols-1 gap-3">
@@ -78,7 +81,7 @@ declare const React: typeof import("react");
 
         <div className="mt-4">
           <div className="text-sm font-bold text-slate-500">Результат</div>
-          <pre className="mt-3 min-h-[120px] whitespace-pre-wrap rounded-[22px] bg-slate-900 p-4 font-mono text-sm leading-6 text-emerald-100">
+          <pre className="mt-3 min-h-[120px] whitespace-pre-wrap rounded-[22px] bg-gradient-to-br from-slate-900 to-slate-800 p-4 font-mono text-sm leading-6 text-emerald-100">
             {output}
           </pre>
         </div>

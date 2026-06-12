@@ -24,12 +24,14 @@ declare const React: typeof import("react");
     onSave: () => void;
     onShare: () => void;
   }) => (
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
+    <section className="glass-card candy-card rounded-[28px] border border-white/70 p-5 shadow-soft">
       <div className="mb-4">
-        <div className="text-sm font-bold text-brand-600">Домашнее задание</div>
+        <div className="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.18em] text-amber-700">
+          задание
+        </div>
         <h3 className="mt-1 text-xl font-extrabold text-slate-900">{assignment.title}</h3>
         <p className="mt-2 text-sm leading-6 text-slate-600">{assignment.description}</p>
-        <div className="mt-3 rounded-[20px] bg-brand-50 px-4 py-3 text-sm text-brand-900">
+        <div className="mt-3 rounded-[20px] bg-gradient-to-r from-brand-50 to-sky-50 px-4 py-3 text-sm text-brand-900">
           Подсказка: {assignment.hint}
         </div>
       </div>
@@ -51,7 +53,7 @@ declare const React: typeof import("react");
       <div className="mt-4 grid grid-cols-1 gap-3">
         <button
           onClick={onSave}
-          className="w-full rounded-2xl bg-emerald-500 px-5 py-4 text-base font-extrabold text-white transition active:scale-[0.99]"
+          className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 px-5 py-4 text-base font-extrabold text-white transition active:scale-[0.99]"
         >
           Сохранить ответ
         </button>

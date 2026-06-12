@@ -1,7 +1,9 @@
 html {
   background:
-    radial-gradient(circle at top, rgba(117, 96, 255, 0.2), transparent 28%),
-    linear-gradient(180deg, #f8fbff 0%, #eef2ff 42%, #edf7ff 100%);
+    radial-gradient(circle at 15% 10%, rgba(255, 172, 203, 0.28), transparent 22%),
+    radial-gradient(circle at 85% 12%, rgba(126, 211, 255, 0.28), transparent 20%),
+    radial-gradient(circle at 50% 28%, rgba(174, 150, 255, 0.14), transparent 24%),
+    linear-gradient(180deg, #fffdfd 0%, #f8fbff 38%, #f4fbff 100%);
   min-height: 100%;
 }
 
@@ -35,8 +37,11 @@ pre {
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(18px);
+  box-shadow:
+    0 18px 45px rgba(80, 101, 160, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .hero-grid {
@@ -44,4 +49,42 @@ pre {
     linear-gradient(rgba(117, 96, 255, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(117, 96, 255, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+.app-shell {
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.65), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.12));
+}
+
+.candy-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.candy-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -20px -30px auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.38), transparent 70%);
+  pointer-events: none;
+}
+
+.section-banner {
+  background:
+    linear-gradient(135deg, rgba(245, 238, 255, 0.96), rgba(233, 247, 255, 0.94)),
+    linear-gradient(135deg, rgba(117, 96, 255, 0.16), rgba(74, 201, 255, 0.16));
+  border: 1px solid rgba(212, 221, 255, 0.9);
+  box-shadow:
+    0 14px 30px rgba(123, 110, 216, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.soft-dots {
+  background-image:
+    radial-gradient(rgba(117, 96, 255, 0.14) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
 }
