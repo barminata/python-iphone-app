@@ -1,0 +1,43 @@
+html {
+  background:
+    radial-gradient(circle at top, rgba(117, 96, 255, 0.2), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #eef2ff 42%, #edf7ff 100%);
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: #172033;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+textarea,
+button,
+input {
+  font: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+.safe-pb {
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(117, 96, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(117, 96, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}

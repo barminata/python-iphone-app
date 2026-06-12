@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Учим Python</title>
+    <meta
+      name="description"
+      content="Мобильное веб-приложение для обучения Python с телефона."
+    />
+    <meta name="theme-color" content="#5f46f2" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Учим Python" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#f4f4ff",
+                100: "#ecebff",
+                200: "#d8d4ff",
+                300: "#b8adff",
+                400: "#9280ff",
+                500: "#7560ff",
+                600: "#5f46f2",
+                700: "#4f39d2",
+              },
+              skysoft: "#eef6ff",
+            },
+            boxShadow: {
+              soft: "0 20px 50px rgba(95, 70, 242, 0.12)",
+            },
+            fontFamily: {
+              sans: ["Manrope", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body class="min-h-screen bg-slate-950">
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script
+      type="text/babel"
+      data-type="module"
+      data-presets="typescript,react"
+      src="./src/main.tsx"
+    ></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch(() => {
+            // Service worker is optional, so the app still works without it.
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
