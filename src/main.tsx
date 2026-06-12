@@ -36,7 +36,6 @@ declare global {
 const { useEffect, useState } = React;
 
 const STORAGE_KEY = "learn-python-mobile-state-v1";
-const APP_URL_KEY = "learn-python-share-url-v1";
 
 const lessons: Lesson[] = [
   {
@@ -263,7 +262,6 @@ const App = () => {
   const [runOutput, setRunOutput] = useState("Здесь появится результат после запуска кода.");
   const [isRunning, setIsRunning] = useState(false);
   const [showHint, setShowHint] = useState(false);
-  const [shareUrl, setShareUrl] = useState(() => window.localStorage.getItem(APP_URL_KEY) ?? "");
 
   const currentLesson = lessonById(route.lessonId ?? 1);
   const completedCount = appState.completedLessonIds.length;
@@ -272,10 +270,6 @@ const App = () => {
   useEffect(() => {
     writeState(appState);
   }, [appState]);
-
-  useEffect(() => {
-    window.localStorage.setItem(APP_URL_KEY, shareUrl);
-  }, [shareUrl]);
 
   useEffect(() => {
     const syncRoute = () => setRoute(getRouteFromHash());
@@ -395,8 +389,6 @@ const App = () => {
           <HomeScreen
             completedLessonIds={appState.completedLessonIds}
             achievements={appState.achievements}
-            shareUrl={shareUrl}
-            onShareUrlChange={setShareUrl}
             onStart={() => openLesson(1)}
             onOpenLesson={openLesson}
           />
@@ -472,15 +464,11 @@ const StatusPill = ({ label, value }: { label: string; value: string }) => (
 const HomeScreen = ({
   completedLessonIds,
   achievements,
-  shareUrl,
-  onShareUrlChange,
   onStart,
   onOpenLesson,
 }: {
   completedLessonIds: number[];
   achievements: AchievementId[];
-  shareUrl: string;
-  onShareUrlChange: (value: string) => void;
   onStart: () => void;
   onOpenLesson: (lessonId: number) => void;
 }) => (
@@ -498,36 +486,6 @@ const HomeScreen = ({
           Начать обучение
         </button>
       </div>
-    </section>
-
-    <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
-      <h2 className="text-lg font-extrabold text-slate-900">Ссылка для телефона сестры</h2>
-      <p className="mt-2 text-sm leading-6 text-slate-600">
-        Чтобы приложение работало у неё само по себе, его нужно опубликовать в интернете.
-        Вставь сюда готовую ссылку после публикации, и её будет удобно копировать и отправлять.
-      </p>
-      <input
-        type="url"
-        inputMode="url"
-        placeholder="https://..."
-        value={shareUrl}
-        onChange={(event) => onShareUrlChange(event.target.value)}
-        className="mt-4 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none"
-      />
-      {shareUrl ? (
-        <a
-          href={shareUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-3 inline-flex rounded-2xl bg-slate-900 px-4 py-3 text-sm font-extrabold text-white"
-        >
-          Открыть опубликованную версию
-        </a>
-      ) : (
-        <div className="mt-3 rounded-2xl bg-slate-100 px-4 py-3 text-sm text-slate-500">
-          После публикации сюда можно вставить ссылку, например с Netlify или GitHub Pages.
-        </div>
-      )}
     </section>
 
     <section className="glass-card rounded-[28px] border border-white/70 p-5 shadow-soft">
